@@ -1,5 +1,9 @@
 # pyproject-doctor
 
+<p align="center">
+  <img src="assets/logo.png" alt="pyproject-doctor logo" width="160">
+</p>
+
 Offline deep validator for `pyproject.toml` that catches the semantic mistakes other tools miss.
 
 Most validators only check TOML syntax. pyproject-doctor goes further: it validates that your versions are PEP 440 compliant, your dependencies are PEP 508 compliant, your version constraints are actually satisfiable, your referenced files exist, your URLs are real URLs, your email addresses look right, and your entry-point references are correctly formatted.
