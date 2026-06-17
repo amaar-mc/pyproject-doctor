@@ -1,0 +1,6 @@
+[project]
+name = "my-package"
+version = "1.0.0"
+
+[project.scripts]
+my-cli = "not_valid_format"
