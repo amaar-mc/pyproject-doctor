@@ -22,6 +22,10 @@ Most validators only check TOML syntax. pyproject-doctor goes further: it valida
 | `email-invalid` | An author or maintainer email address is malformed |
 | `entry-point-invalid` | A script or entry-point value is not in valid `module:attr` format |
 | `classifier-unknown` | A classifier in `project.classifiers` is not a known trove classifier (requires `pip install 'pyproject-doctor[classifiers]'`) |
+| `dynamic-malformed` | `project.dynamic` is not a list of strings |
+| `dynamic-name-forbidden` | `name` appears in `project.dynamic` (PEP 621 requires it to always be static) |
+| `dynamic-field-unknown` | An entry in `project.dynamic` is not a recognized `[project]` field name |
+| `dynamic-static-conflict` | A field listed in `project.dynamic` is also set statically in `[project]` |
 
 ## Install
 

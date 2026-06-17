@@ -6,6 +6,7 @@ from typing import Any
 
 from pyproject_doctor.checks.classifiers import check_classifiers
 from pyproject_doctor.checks.dependencies import check_dependencies
+from pyproject_doctor.checks.dynamic import check_dynamic
 from pyproject_doctor.checks.emails import check_emails
 from pyproject_doctor.checks.entry_points import check_entry_points
 from pyproject_doctor.checks.files import check_files
@@ -24,4 +25,5 @@ def check_pyproject(data: Mapping[str, Any], *, root: Path) -> list[Diagnostic]:
     diagnostics.extend(check_emails(data))
     diagnostics.extend(check_entry_points(data))
     diagnostics.extend(check_classifiers(data))
+    diagnostics.extend(check_dynamic(data))
     return diagnostics
