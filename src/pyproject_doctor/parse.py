@@ -6,7 +6,7 @@ from pathlib import Path
 if sys.version_info >= (3, 11):
     import tomllib
 else:
-    import tomli as tomllib  # type: ignore[import-not-found]
+    import tomli as tomllib
 
 from pyproject_doctor.checks import check_pyproject
 from pyproject_doctor.model import Diagnostic
