@@ -1,0 +1,7 @@
+- id: pyproject-doctor
+  name: pyproject-doctor
+  description: Validate pyproject.toml for semantic errors
+  entry: pyproject-doctor
+  language: python
+  files: ^pyproject\.toml$
+  pass_filenames: false

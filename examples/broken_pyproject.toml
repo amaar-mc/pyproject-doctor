@@ -1,0 +1,25 @@
+# This file intentionally contains errors to demonstrate pyproject-doctor
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "broken-example"
+version = "not.a.valid.version!!!"
+description = "Example of a broken pyproject.toml"
+dependencies = [
+    "requests>=3.0,<2.0",
+    "numpy not_valid_requirement",
+]
+authors = [
+    {name = "Bad Author", email = "not-an-email"},
+]
+classifiers = [
+    "This :: Is :: Not :: Real",
+]
+
+[project.urls]
+Homepage = "not-a-url"
+
+[project.scripts]
+my-tool = "no_colon_here"
