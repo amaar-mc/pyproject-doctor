@@ -17,10 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `dynamic-field-unknown`: an entry in `project.dynamic` is not a recognized `[project]` field name.
   - `dynamic-static-conflict`: a field listed in `project.dynamic` is also set statically in `[project]`.
 
-### Notes
-
-- PyPI publish is queued behind the new-project quota (429). Install from GitHub or build from source.
-
 ## [0.1.0] - 2026-06-17
 
 ### Added
