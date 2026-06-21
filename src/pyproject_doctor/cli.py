@@ -5,7 +5,9 @@ import json
 import sys
 from pathlib import Path
 
+from pyproject_doctor import __version__
 from pyproject_doctor.parse import check_file
+from pyproject_doctor.sarif import to_sarif
 
 
 def run(argv: list[str]) -> int:
@@ -22,7 +24,7 @@ def run(argv: list[str]) -> int:
     )
     parser.add_argument(
         "--format",
-        choices=["text", "json"],
+        choices=["text", "json", "sarif"],
         default="text",
         help="Output format (default: text)",
     )
@@ -32,6 +34,11 @@ def run(argv: list[str]) -> int:
 
     if args.format == "json":
         print(json.dumps([d.as_dict() for d in diagnostics], indent=2))
+    elif args.format == "sarif":
+        document = to_sarif(
+            diagnostics, artifact_uri=str(path), tool_version=__version__
+        )
+        print(json.dumps(document, indent=2))
     else:
         for d in diagnostics:
             print(f"{d.level} {d.key_path}: {d.code}: {d.message}")

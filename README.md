@@ -6,15 +6,14 @@
 
 Offline deep validator for `pyproject.toml` that catches the semantic mistakes other tools miss.
 
-Most validators only check TOML syntax. pyproject-doctor goes further: it validates that your versions are PEP 440 compliant, your dependencies are PEP 508 compliant, your version constraints are actually satisfiable, your referenced files exist, your URLs are real URLs, your email addresses look right, and your entry-point references are correctly formatted.
-
-> **PyPI release pending.** Install from GitHub for now (see below).
+Most validators only check TOML syntax. pyproject-doctor goes further: it validates that your versions are PEP 440 compliant, your `requires-python` is a valid specifier set, your dependencies are PEP 508 compliant, your version constraints are actually satisfiable, your referenced files exist, your URLs are real URLs, your email addresses look right, and your entry-point references are correctly formatted.
 
 ## What it checks
 
 | Code | Description |
 |------|-------------|
 | `version-invalid` | `project.version` is not a valid PEP 440 version |
+| `requires-python-invalid` | `project.requires-python` is empty, malformed, not a valid PEP 440 specifier set, or unsatisfiable (e.g. `>=3.12,<3.8`) |
 | `dep-invalid` | A dependency in `project.dependencies`, `project.optional-dependencies`, or `build-system.requires` is not a valid PEP 508 requirement |
 | `constraint-unsatisfiable` | A dependency's version specifiers form an impossible range (e.g. `>=2.0,<1.0`) |
 | `file-missing` | A file referenced by `project.readme`, `project.license`, or an entry-point module does not exist |
@@ -30,13 +29,13 @@ Most validators only check TOML syntax. pyproject-doctor goes further: it valida
 ## Install
 
 ```bash
-pip install git+https://github.com/amaar-mc/pyproject-doctor.git
+pip install pyproject-doctor
 ```
 
 Or with classifier validation:
 
 ```bash
-pip install "git+https://github.com/amaar-mc/pyproject-doctor.git#egg=pyproject-doctor[classifiers]"
+pip install "pyproject-doctor[classifiers]"
 ```
 
 ## Usage
@@ -50,9 +49,16 @@ pyproject-doctor /path/to/pyproject.toml
 
 # JSON output
 pyproject-doctor --format json
+
+# SARIF 2.1.0 output (for GitHub code scanning and other SARIF consumers)
+pyproject-doctor --format sarif
 ```
 
 Exit code is 1 if any error-level diagnostic is found, 0 otherwise.
+
+The `sarif` format emits a SARIF 2.1.0 log: each diagnostic becomes one result, the
+diagnostic code is the `ruleId`, every result points at the analyzed `pyproject.toml`,
+and the SARIF level (error, warning, note) is derived from the diagnostic's level.
 
 ## Pre-commit
 
@@ -61,7 +67,7 @@ Add to `.pre-commit-config.yaml`:
 ```yaml
 repos:
   - repo: https://github.com/amaar-mc/pyproject-doctor
-    rev: v0.1.0
+    rev: v0.3.0
     hooks:
       - id: pyproject-doctor
 ```

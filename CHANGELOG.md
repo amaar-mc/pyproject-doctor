@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-06-21
+
+### Added
+
+- `requires-python` validity check. New diagnostic code `requires-python-invalid`:
+  flags a `project.requires-python` value that is not a string, is empty, is not a
+  valid PEP 440 version specifier set, or specifies an unsatisfiable range (for
+  example `>=3.12,<3.8`). A valid value or an absent `requires-python` produces no finding.
+- SARIF 2.1.0 output format for the CLI: `pyproject-doctor --format sarif`. Each
+  diagnostic maps to one SARIF result, the diagnostic code becomes the `ruleId`,
+  and the SARIF level (error, warning, note) is derived from the diagnostic level.
+  The pure renderer lives in `pyproject_doctor.sarif.to_sarif`.
+
 ## [0.2.0] - 2026-06-17
 
 ### Added
@@ -34,8 +47,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pre-commit hook support via `.pre-commit-hooks.yaml`.
 - CLI: `pyproject-doctor [PATH] [--format text|json]`.
 
-### Notes
-
-- PyPI release is pending. Install from source or GitHub for now.
-
+[0.3.0]: https://github.com/amaar-mc/pyproject-doctor/releases/tag/v0.3.0
+[0.2.0]: https://github.com/amaar-mc/pyproject-doctor/releases/tag/v0.2.0
 [0.1.0]: https://github.com/amaar-mc/pyproject-doctor/releases/tag/v0.1.0

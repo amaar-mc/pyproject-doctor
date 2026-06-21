@@ -1,0 +1,4 @@
+[project]
+name = "bad-requires-python"
+version = "1.0.0"
+requires-python = "not a specifier"
