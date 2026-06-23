@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyproject-doctor"
-version = "0.3.0"
+version = "0.4.0"
 description = "Offline deep validator for pyproject.toml: file existence, URL and email format, PEP 440 version and PEP 508 specifier validity, version-constraint satisfiability, and entry-point format."
 readme = "README.md"
 license = {file = "LICENSE"}

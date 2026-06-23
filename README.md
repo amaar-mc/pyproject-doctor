@@ -25,6 +25,7 @@ Most validators only check TOML syntax. pyproject-doctor goes further: it valida
 | `dynamic-name-forbidden` | `name` appears in `project.dynamic` (PEP 621 requires it to always be static) |
 | `dynamic-field-unknown` | An entry in `project.dynamic` is not a recognized `[project]` field name |
 | `dynamic-static-conflict` | A field listed in `project.dynamic` is also set statically in `[project]` |
+| `license-expression-invalid` | `project.license` in its modern PEP 639 string form is not a valid SPDX license expression: empty, an unknown license or exception identifier, a deprecated identifier, the disallowed `+` suffix (use the `-or-later` form), a misplaced operator, or unbalanced parentheses. The legacy table form (`{ file = ... }` / `{ text = ... }`) is not treated as an expression |
 
 ## Install
 
@@ -67,7 +68,7 @@ Add to `.pre-commit-config.yaml`:
 ```yaml
 repos:
   - repo: https://github.com/amaar-mc/pyproject-doctor
-    rev: v0.3.0
+    rev: v0.4.0
     hooks:
       - id: pyproject-doctor
 ```

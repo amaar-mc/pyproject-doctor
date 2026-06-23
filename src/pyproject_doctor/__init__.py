@@ -4,6 +4,6 @@ from pyproject_doctor.checks import check_pyproject
 from pyproject_doctor.model import Diagnostic
 from pyproject_doctor.parse import check_file
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 __all__ = ["check_pyproject", "check_file", "Diagnostic", "__version__"]

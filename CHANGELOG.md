@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-06-23
+
+### Added
+
+- PEP 639 SPDX license-expression validation. New diagnostic code
+  `license-expression-invalid`: validates `project.license` when it is given in
+  the modern string form (for example `license = "MIT"`,
+  `license = "MIT OR Apache-2.0"`, or `license = "Apache-2.0 WITH LLVM-exception"`).
+  It validates the SPDX expression grammar (license identifiers, `WITH` exception
+  clauses, `AND` / `OR` operators, and parentheses) against a vendored, curated set
+  of common SPDX license and exception identifiers, with no new runtime dependency.
+  It flags an empty expression, an unknown license or exception identifier, a
+  deprecated identifier (suggesting the canonical replacement), the PEP-639
+  disallowed `+` suffix (recommending the `-or-later` form), a misplaced operator,
+  and unbalanced parentheses. The legacy table form
+  (`{ file = "..." }` / `{ text = "..." }`) is intentionally not treated as an
+  expression, and an absent license field produces no finding.
+
 ## [0.3.0] - 2026-06-21
 
 ### Added

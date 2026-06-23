@@ -10,6 +10,7 @@ from pyproject_doctor.checks.dynamic import check_dynamic
 from pyproject_doctor.checks.emails import check_emails
 from pyproject_doctor.checks.entry_points import check_entry_points
 from pyproject_doctor.checks.files import check_files
+from pyproject_doctor.checks.license_expression import check_license_expression
 from pyproject_doctor.checks.requires_python import check_requires_python
 from pyproject_doctor.checks.urls import check_urls
 from pyproject_doctor.checks.version import check_version
@@ -28,4 +29,5 @@ def check_pyproject(data: Mapping[str, Any], *, root: Path) -> list[Diagnostic]:
     diagnostics.extend(check_entry_points(data))
     diagnostics.extend(check_classifiers(data))
     diagnostics.extend(check_dynamic(data))
+    diagnostics.extend(check_license_expression(data))
     return diagnostics
